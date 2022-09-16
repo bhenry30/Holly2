@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Holly v2</title>
+</head>
+    <body class="amber lighten-5">
+      
+        <!-- Navigation bar container -->
+        <nav>
+            <div class="nav-wrapper teal">
+              <a href="#" class="brand-logo">Holly</a>
+              <ul class="right">
+                <li><a href="#" data-target="slide-out" class="sidenav-trigger">Bookmarks</a></li>
+              </ul>
+            </div>
+        </nav>
+                
+        <!-- Sidenav element -->
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+              <div class="background">
+                <div class="teal"><li class="white">Bookmarks</li></div>
+              </div>
+            </div></li>
+        </ul>
+        <br><br><br><br>
+        
+        <div class="container">
+  
+          <!-- Datepicker and generate button -->
+          <br>
+          <div class="row">
+            <form>
+              <div class="input-field">
+                <input type="text" id="datepicker" placeholder="Click here to select a new date" class="col s8 offset-s2 datepicker">
+              </div>
+            </form>
+          </div>
+          
+          <!-- Card -->
+          <div id="cardfetch"></div>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+              // setDefaultDate: true, 
+              // defaultDate: new Date(),
+              onClose(){
+                dd = String(this.date.getDate()).padStart(2, '');
+                mm = String(this.date.getMonth() + 1).padStart(2, '');
+                yyyy = this.date.getFullYear();
+                console.log(dd, mm, yyyy)
+                $("#cardfetch").empty()
+                getHoliday();
+              }
+            });
+          });
+        </script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {draggable:true, edge:"right"});
+          });
+        </script>
+          <script type="text/javascript" src="assets/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+        </script>
+    </body>
+
+</html>

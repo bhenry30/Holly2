@@ -1,0 +1,13 @@
+@media only screen and (min-width: 993px){
+    nav a.sidenav-trigger {
+        display: block;
+    }
+    nav .brand-logo {
+        margin-left: 18px 
+    }
+    
+}
+
+.datepicker-controls .select-month input {
+    width: 80px;
+}
