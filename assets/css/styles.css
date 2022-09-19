@@ -8,6 +8,21 @@
     
 }
 
+h4 {
+    margin: 0;
+}
+
+.card .card-content {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
 .datepicker-controls .select-month input {
     width: 80px;
 }
+
+.flag { 
+    float: right; margin: -160px 20px 0px 0px; 
+    filter: drop-shadow(0 0 0.18rem rgb(131, 131, 131));
+    max-width: 15%; 
+  }

@@ -15,13 +15,14 @@ const setBookmarks = () => {
 };
 setBookmarks();
 
+const today = new Date();
+let dd = String(today.getDate()).padStart(2, '')
+let mm = String(today.getMonth() + 1).padStart(2, '')
+let monthName = today.toLocaleString('en-us', { month: 'long' });
+let yyyy = today.getFullYear()
 
 const getHoliday = () => {
     // sets date variables
-    const today = new Date();
-    let dd = String(today.getDate()).padStart(2, '')
-    let mm = String(today.getMonth() + 1).padStart(2, '')
-    let yyyy = today.getFullYear()
 
     countryCodes.forEach((countryCode) => {
         async function fetchData(){
@@ -43,7 +44,7 @@ const getHoliday = () => {
                                 <div class="card-content">
                                     <span class="card-title-${holidayIdentifier} activator grey-text text-darken-4"><h4 id= "holiday-name" class="teal-text element-name text-darken-3">${name}</h4></span>
                                     <h5>Celebrated In: ${country.name}<br>
-                                    ${type} on ${mm} ${dd}</h5>
+                                    ${type} on ${monthName} ${dd}</h5>
                                     <p>${description}</p><br>
                                     <div id="holiday">
                                         <img style="clear: right" class="flag" src="https://flagcdn.com/w640/us.png" srcset="https://flagcdn.com/w1280/${countryCodes}.png"
