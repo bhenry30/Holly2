@@ -52,11 +52,16 @@ const getHoliday = () => {
                                         alt="${country.name}"></div>
                                     </div>
                                     <div class="card-action">
-                                        <a class="orange lighten-3 white-text col s2 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
-                                        <a class="teal white-text col s2 hoverable" style="padding: .8rem" >Export Holiday to Calendar</a>
+                                        <a class="teal white-text col s2 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
                                         <a id="bookmarkBtn-${holidayIdentifier}" class="red accent-2 white-text col s2 hoverable" style="padding: .8rem;">Bookmark this holiday</a>
                                 </div>
-                            </div> `); 
+                            </div> `);
+                            $(document).find("a[id^='bookmarkBtn-']").on('click', function(){
+                                const localHolidayIdentifier = this.id.split('-')[1];
+                                const nameEl = $(".card-title-" + localHolidayIdentifier).text();
+                                const dateEl = mm + '/' + dd + '/' + yyyy;
+                                localStorage.setItem(nameEl, dateEl);
+                            }); 
                 }
                 displayCard(holidays);
             })

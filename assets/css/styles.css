@@ -26,3 +26,34 @@ h4 {
     filter: drop-shadow(0 0 0.18rem rgb(131, 131, 131));
     max-width: 15%; 
   }
+
+#slide-out.sidenav {
+  background-color: #fff8e1;
+}
+
+#bookmarks-title {
+    height: 64px;
+}
+.sidenav li {
+    font-size: x-large;
+    text-align:center;
+    line-height: 64px;
+}
+  
+.sidenav li i {
+    display: absolute;
+    float: right;
+    
+}
+
+  
+.sticky-action { 
+    padding-bottom: 16px; 
+    margin-top: 2rem; 
+    margin-bottom: 2rem; 
+    border-radius: 8px
+}
+
+a {
+    border-radius: 8px
+}
