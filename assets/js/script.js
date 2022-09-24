@@ -23,66 +23,67 @@ let yyyy = today.getFullYear()
 
 const getHoliday = () => {
     // sets date variables
-
-    countryCodes.forEach((countryCode) => {
+    
+    
+    countryCodes.map((countryCode) => {
         async function fetchData(){
             const countryCodes = countryCode.toLowerCase();
             const response = await fetch(`https://calendarific.com/api/v2/holidays?api_key=9482cbc8381d91c591e0818d55fcc0aa976b1b75&country=${countryCodes}&day=${dd}&month=${mm}&year=${yyyy}`)
             const holidays = await response.json()
+            
+
             if (holidays.response.holidays.length !== 0) {
-                holidays.response.holidays.forEach((holiday) => {
-                    function displayCard (data) {
+                holidays.response.holidays.map(function(holiday) { 
+                    function displayCard(data) {
                         console.log(data)
                         const { name, type, description, country } = holiday;
-                        console.log(country.name)
                         const card = document.getElementById("card-fetch");
-                        holidayIdentifier = name.replace(/ /g, '');
+                        let uuid = self.crypto.randomUUID()
+                        const holidayIdentifier = name.replace(/ /g, '') + uuid
+                    
 
-                    // inserts cards into html with data from holidays
+                        // inserts cards into html with data from holidays
                         card.insertAdjacentHTML('beforeend', `
                             <div class="card sticky-action">
                                 <div class="card-content">
-                                    <span class="card-title-${holidayIdentifier} activator grey-text text-darken-4"><h4 id= "holiday-name" class="teal-text element-name text-darken-3">${name}</h4></span>
+                                    <span class="card-title activator grey-text text-darken-4">
+                                        <h4 id="holiday-name-${holidayIdentifier}" class="teal-text element-name text-darken-3">${name}</h4>
+                                    </span>
                                     <h5>Celebrated In: ${country.name}<br>
                                     ${type} on ${monthName} ${dd}</h5>
                                     <p>${description}</p><br>
                                     <div id="holiday">
                                         <img style="clear: right" class="flag" src="https://flagcdn.com/w640/us.png" srcset="https://flagcdn.com/w1280/${countryCodes}.png"
                                        width='200px'
-                                        alt="${country.name}"></div>
+                                        alt="${country.name}">
                                     </div>
-                                    <div class="card-action">
-                                        <a class="teal white-text col s2 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
-                                        <a id="bookmarkBtn-${holidayIdentifier}" class="red accent-2 white-text col s2 hoverable" style="padding: .8rem;">Bookmark this holiday</a>
+                                </div>
+                                <div class="card-action">
+                                    <a class="teal white-text col s2 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
+                                    <a id="bookmarkBtn-${holidayIdentifier}" class="bookmarkBtn red accent-2 white-text col s2 hoverable" style="padding: .8rem;">Bookmark this holiday</a>
                                 </div>
                             </div> `);
-                            $(document).find("a[id^='bookmarkBtn-']").on('click', function(){
-                                const localHolidayIdentifier = this.id.split('-')[1];
-                                const nameEl = $(".card-title-" + localHolidayIdentifier).text();
+                            function setListeners() {
+                                const bookmarkBtns = document.querySelectorAll('.bookmarkBtn')
+                                console.log(bookmarkBtns)
+                                bookmarkBtns.forEach(function(bookmarkBtn) {
+                                    bookmarkBtn.addEventListener('click', function(e) {
+                                    const bookmarkBtnTarget = e.target
+                                // const lhi = bookmarkBtn.id.slice(12)
+                                // const localHolidayIdentifier = lhi.slice(-36);
+                                const nameEl = bookmarkBtnTarget.parentElement.parentElement.querySelector('.card-title').innerText
                                 const dateEl = mm + '/' + dd + '/' + yyyy;
                                 localStorage.setItem(nameEl, dateEl);
-                            }); 
-                }
-                displayCard(holidays);
-            })
-        }}
-        fetchData();
-    })       
-    // fetches calendarific.com with b's API
-    // fetch(`https://calendarific.com/api/v2/holidays?api_key=d9bccf97030e080aadddfbb2c2e49bfb1eb748b9&day=${dd}&month=${mm}&year=${yyyy}`)
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .catch(err => console.error(err));
-    // }
-    
-    // fetches holidayapi.com
-    // fetch(`https://holidayapi.com/v1/holidays?pretty&key=3e55feff-d882-4106-adc4-a657a2712556&day=31&month=1&year=2022`, options)
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .catch(err => console.error(err));
-}
-
-getHoliday()
+                                })
+                                })}
+                            setListeners();    
+                        }
+                        displayCard(holidays);
+                })
+            }}
+                fetchData()
+            })      
+        }
+        getHoliday()
 
 
-{/* <p>${country.name} has a population of ${CountryPopulation}<br>World Ranking by population is ${obj.ranking}<br>${element.country.name} is ${WorldShare}% of the World Population and celebrates this holiday</p> */}

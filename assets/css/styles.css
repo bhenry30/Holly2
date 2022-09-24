@@ -55,5 +55,6 @@ h4 {
 }
 
 a {
-    border-radius: 8px
+    border-radius: 8px;
+    cursor: pointer;
 }
