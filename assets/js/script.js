@@ -7,11 +7,21 @@ const countryCodes = [ "CN", "IN", "US", "ID", "BR", "PK", "BD", "NG", "RU", "JP
 
 // sets bookmarks to sliding side nav
 const setBookmarks = () => {
+    const localStorageArray = []
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
         const value = localStorage.getItem(key)
-        $("#bookmarks").append(`<h6>${key}: ${value}</h6>`)
+        localStorageArray[i] = key + ": " + value
+        localStorageArray.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date)
+            }
+        )
+        
+        // $("#bookmarks").append(`<h6>${key}: ${value}</h6>`)
     };
+    localStorageArray.map(function appendBookmark(bookmark) {
+        $("#bookmarks").append(`<h6> ${bookmark}</h6>`)
+    })
 };
 setBookmarks();
 
@@ -46,21 +56,21 @@ const getHoliday = () => {
                         card.insertAdjacentHTML('beforeend', `
                             <div class="card sticky-action">
                                 <div class="card-content">
+                                <div id="holiday">
+                                    <img style="clear: right" class="flag" src="https://flagcdn.com/w640/us.png" srcset="https://flagcdn.com/w1280/${countryCodes}.png"
+                                   width='200px'
+                                    alt="${country.name}">
+                                </div>
                                     <span class="card-title activator grey-text text-darken-4">
                                         <h4 id="holiday-name-${holidayIdentifier}" class="teal-text element-name text-darken-3">${name}</h4>
-                                    </span>
+                                        </span>
                                     <h5>Celebrated In: ${country.name}<br>
                                     ${type} on ${monthName} ${dd}</h5>
                                     <p>${description}</p><br>
-                                    <div id="holiday">
-                                        <img style="clear: right" class="flag" src="https://flagcdn.com/w640/us.png" srcset="https://flagcdn.com/w1280/${countryCodes}.png"
-                                       width='200px'
-                                        alt="${country.name}">
-                                    </div>
                                 </div>
-                                <div class="card-action">
-                                    <a class="teal white-text col s2 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
-                                    <a id="bookmarkBtn-${holidayIdentifier}" class="bookmarkBtn red accent-2 white-text col s2 hoverable" style="padding: .8rem;">Bookmark this holiday</a>
+                                <div class="card-action row">
+                                    <a class="teal white-text flex col s12 m3 3 hoverable" style="padding: .8rem" href="https://en.wikipedia.org/wiki/${name}" target="_blank">Learn More</a>
+                                    <a id="bookmarkBtn-${holidayIdentifier}" class="bookmarkBtn red accent-2 white-text flex col s12 m3 3 hoverable" style="padding: .8rem;">Bookmark holiday</a>
                                 </div>
                             </div> `);
                             function setListeners() {
@@ -69,11 +79,11 @@ const getHoliday = () => {
                                 bookmarkBtns.forEach(function(bookmarkBtn) {
                                     bookmarkBtn.addEventListener('click', function(e) {
                                     const bookmarkBtnTarget = e.target
-                                // const lhi = bookmarkBtn.id.slice(12)
-                                // const localHolidayIdentifier = lhi.slice(-36);
-                                const nameEl = bookmarkBtnTarget.parentElement.parentElement.querySelector('.card-title').innerText
-                                const dateEl = mm + '/' + dd + '/' + yyyy;
-                                localStorage.setItem(nameEl, dateEl);
+                                    // const lhi = bookmarkBtn.id.slice(12)
+                                    // const localHolidayIdentifier = lhi.slice(-36);
+                                    const nameEl = bookmarkBtnTarget.parentElement.parentElement.querySelector('.card-title').innerText
+                                    const dateEl = mm + '/' + dd + '/' + yyyy;
+                                    localStorage.setItem(nameEl, dateEl);
                                 })
                                 })}
                             setListeners();    
