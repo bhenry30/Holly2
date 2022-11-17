@@ -20,7 +20,7 @@ This site was developed using the following technologies:
 * Add a loading icon to indicate to users that there is content loading, then display all results at once.
 ## Website  
 The site can be accessed at the following hyperlink:  
-https://bhenry30.github.io/holly2/  
+https://bhenry30.github.io/Holly2/  
 ## Screenshot:  
 ![HOLLY | EDUCATE & CELEBRATE ](./assets/images/hollyV2.png) 
 ## Contribution  
