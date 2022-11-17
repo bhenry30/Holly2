@@ -22,7 +22,7 @@ This site was developed using the following technologies:
 The site can be accessed at the following hyperlink:  
 https://bhenry30.github.io/holly2/  
 ## Screenshot:  
-![HOLLY | EDUCATE & CELEBRATE ](./assets/images/screenshot.png) 
+![HOLLY | EDUCATE & CELEBRATE ](./assets/images/hollyV2.png) 
 ## Contribution  
 Authored by:    
 Anthony Quinones  
