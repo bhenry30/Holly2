@@ -3,7 +3,7 @@
 ## Project Objective  
 Holly integrates data received from multiple server-side API requests to create an interactive Holiday Database. We worked collaboratively through agile development methodologies, and implemented features, functions, and bug fixes through Git.   
 ## Description  
-Holly is a web app that allows users to educate themselves about holidays and events that happen around the world every day and other interesting facts.  
+Holly is a web app that allows users to educate themselves about holidays and events that happen around the world every day.  
 ## User story  
 User 1 - The user wants a website to go that will show them what holidays are being celebrated around the world on that day. I want to be able to celebrate and learn something interesting every day of the year.  
 User 2 - As a traveler, I want to be informed of all the holidays taking place when I’m traveling to a certain country, so I can better adapt to the culture of that country.  
